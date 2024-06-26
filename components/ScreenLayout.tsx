@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { ScrollView, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import HeaderText from './HeaderText';
+import React, { ReactNode } from "react";
+import { StatusBar } from "expo-status-bar";
+import { ScrollView, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import HeaderText from "./HeaderText";
 
 interface Props {
   children?: ReactNode;
@@ -27,7 +27,7 @@ const ScreenLayout: React.FC<Props> = ({ children, title, ...props }) => {
         </View>
       )}
       <ScrollView
-        // flex={1}
+        flex={1}
         contentContainerStyle={{ flexGrow: 1 }}
         showsVerticalScrollIndicator={false}
       >
