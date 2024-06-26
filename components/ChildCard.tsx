@@ -35,7 +35,7 @@ const ChildCard: React.FC<Props> = ({ childName, childAge }) => {
 
 const useStyles = makeStyles((theme: any) => ({
   container: {
-    backgroundColor: theme.colors.grey5,
+    backgroundColor: theme.colors.secondary,
     paddingVertical: 12,
     paddingHorizontal: 12,
     borderRadius: 12,

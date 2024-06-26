@@ -62,6 +62,8 @@ const useStyles = makeStyles((theme: any, props: StyleProps) => ({
         ? theme.colors.white
         : props.variant === "secondary"
         ? theme.colors.grey0
-        : theme.colors.primary,
+        : props.variant === "outline"
+        ? theme.colors.primary
+        : theme.colors.link,
   },
 }));
