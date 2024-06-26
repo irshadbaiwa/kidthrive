@@ -13,7 +13,12 @@ interface Props {
 const ScreenLayout: React.FC<Props> = ({ children, title, ...props }) => {
   return (
     <SafeAreaView
-      style={{ paddingTop: 16, paddingHorizontal: 18, paddingBottom: 0 }}
+      style={{
+        paddingTop: 16,
+        paddingHorizontal: 18,
+        paddingBottom: 0,
+        flex: 1,
+      }}
     >
       <StatusBar style="auto" />
       {title && (
