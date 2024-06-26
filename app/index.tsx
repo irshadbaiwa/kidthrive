@@ -1,17 +1,8 @@
-import {
-  Text,
-  View,
-  SafeAreaView,
-  Pressable,
-  Platform,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native";
-import { useState } from "react";
-import { Input, Image } from "@rneui/themed";
-import { Picker } from "@react-native-picker/picker";
-import DateTimePickerAndroid from "@react-native-community/datetimepicker";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { View } from "react-native";
+import CustomText from "@/components/CustomText";
+import ScreenLayout from "@/components/ScreenLayout";
+import { Button } from "@rneui/themed";
+import { Link } from "expo-router";
 
 export default function Index() {
   const [date, setDate] = useState(new Date());
@@ -37,66 +28,12 @@ export default function Index() {
     showMode("time");
   };
   return (
-    <SafeAreaView>
-      <View>
-        <View style={{ margin: 10 }}>
-          <Image
-            source={require("./assets/images/KidThrive.png")}
-            PlaceholderContent={<ActivityIndicator />}
-          />
-        </View>
-        <View style={{ margin: 20 }}>
-          <Input
-            containerStyle={{}}
-            disabledInputStyle={{ background: "#ddd" }}
-            inputContainerStyle={{}}
-            errorMessage="Oops! that's not correct."
-            errorStyle={{}}
-            errorProps={{}}
-            inputStyle={{}}
-            labelStyle={{}}
-            labelProps={{}}
-            leftIcon={<Icon name="account-outline" size={20} />}
-            leftIconContainerStyle={{}}
-            rightIcon={<Icon name="close" size={20} />}
-            rightIconContainerStyle={{}}
-            placeholder="Enter Name"
-          />
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <Input
-              containerStyle={{}}
-              disabledInputStyle={{ background: "#ddd" }}
-              inputContainerStyle={{}}
-              errorMessage="Oops! that's not correct."
-              errorStyle={{}}
-              errorProps={{}}
-              inputStyle={{}}
-              labelStyle={{}}
-              labelProps={{}}
-              leftIcon={<Icon name="date" size={20} />}
-              leftIconContainerStyle={{}}
-              rightIcon={<Icon name="close" size={20} />}
-              rightIconContainerStyle={{}}
-              placeholder="Date Of Birth"
-              onPress={showDatePicker}
-            />
-            <Input onPress={showDatePicker} />
-            <Text style={styles.text}>Select Date Of Birth</Text>
-          </View>
-          <Text>selected: {date.toLocaleString()}</Text>
-
-          {show && Platform.OS === "android" && (
-            <DateTimePickerAndroid
-              value={date}
-              mode={mode}
-              onChange={onChange}
-            />
-          )}
-        </View>
-      </View>
-    </SafeAreaView>
+    <ScreenLayout title="Home">
+      <CustomText>Edit app/index.tsx to edit this screeen</CustomText>
+      <Link href="/add-child" asChild>
+        <Button>Add child</Button>
+      </Link>
+    </ScreenLayout>
   );
 }
 const styles = StyleSheet.create({
