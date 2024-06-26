@@ -67,6 +67,7 @@ export default function AddChildScreen() {
               onChange={onChange}
             />
           )}
+          <Text>selected: {date.toLocaleString()}</Text>
           <Button title="Submit" buttonStyle={styles.button} />
         </View>
       </SafeAreaView>
