@@ -27,7 +27,7 @@ const ChildCard: React.FC<Props> = ({ childName, childAge }) => {
         <CustomText variant="supporting-text">{childAge}</CustomText>
       </View>
       <Pressable style={styles.chevronContainer}>
-        <Icon size={24} name="chevron-right" type="feather" color="#2089dc" />
+        <Icon size={26} name="chevron-right" type="feather" color="#2089dc" />
       </Pressable>
     </Pressable>
   );
@@ -46,9 +46,7 @@ const useStyles = makeStyles((theme: any) => ({
     marginVertical: 4,
   },
   iconContainer: {
-    height: "100%",
-    aspectRatio: 1 / 1,
-    backgroundColor: theme.colors.grey4,
+    paddingHorizontal: 6,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 8,
