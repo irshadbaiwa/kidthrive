@@ -8,8 +8,8 @@ import { ThemeProvider, lightColors } from "@rneui/themed";
 const theme = {
   colors: {
     ...lightColors,
-    primary: "#1d4fd8", // Your primary color
-    secondary: "#e2e8f0", // Your secondary color
+    primary: "#082f49", // Your primary color
+    secondary: "#e5e7eb", // Your secondary color
     link: "#2089dc",
   },
 };

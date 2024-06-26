@@ -17,7 +17,7 @@ export const CustomButton: React.FC<CustomProps> = ({
   return (
     <Pressable style={styles.btn}>
       {btnText ? (
-        <CustomText style={styles.textColor}>See all</CustomText>
+        <CustomText style={styles.textColor}>{btnText}</CustomText>
       ) : (
         children
       )}
@@ -30,9 +30,10 @@ type StyleProps = {
 };
 const useStyles = makeStyles((theme: any, props: StyleProps) => ({
   btn: {
-    paddingVertical: 4,
-    paddingHorizontal: 6,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
     width: "auto",
+    fontWeight: "600",
     backgroundColor:
       props.variant === "primary"
         ? theme.colors.primary
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme: any, props: StyleProps) => ({
         : props.variant === "secondary"
         ? theme.colors.grey0
         : theme.colors.primary,
-    borderRadius: 20,
+    borderRadius: 8,
     borderWidth: 2,
     borderColor:
       props.variant === "primary"
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme: any, props: StyleProps) => ({
         : "transparent",
   },
   textColor: {
+    fontWeight: "600",
     color:
       props.variant === "primary"
         ? theme.colors.white

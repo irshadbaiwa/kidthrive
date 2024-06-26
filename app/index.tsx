@@ -8,6 +8,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import HeaderText from "@/components/HeaderText";
 import { Icon } from "@rneui/themed";
 import ChildCard from "@/components/ChildCard";
+import UpcomingVaccineCard from "@/components/UpcomingVaccineCard";
 
 const kids = [
   { name: "Saminu Ashiru", age: "10 months old" },
@@ -19,30 +20,25 @@ const kids = [
 export default function Index() {
   const styles = useStyles();
   return (
-    <ScreenLayout title="Welcome back">
-      <View style={styles.metricsContainer}>
-        <View style={styles.metricContainer}>
-          <HeaderText style={styles.headerText}>{kids.length}</HeaderText>
-          <CustomText>children added</CustomText>
-        </View>
-        <Link href="/add-child" asChild>
-          <Pressable style={styles.addChildContainer}>
-            <Icon name="add" type="ionicons" size={44} color="#fff" />
-            <HeaderText
-              variant="sm"
-              style={{ color: "white", textAlign: "center", marginTop: 4 }}
-            >
-              Add child
-            </HeaderText>
-          </Pressable>
-        </Link>
-      </View>
+    <ScreenLayout title="Welcome 👋">
+      {/* Upcoming vaccinations */}
+      <UpcomingVaccineCard
+        vaccine="Polio Vaccine"
+        receiver="Saminu Ashiru"
+        timeToVaccine="In 3 days"
+        date="30th June, 2024"
+      />
+
+      {/** Children added */}
       <View style={styles.container}>
         {kids.map((kid) => (
           <ChildCard key={kid.name} childName={kid.name} childAge={kid.age} />
         ))}
       </View>
       <View style={styles.seeAllContainer}>
+        <Link href="/add-child" asChild>
+          <CustomButton variant="primary" btnText="Add child" />
+        </Link>
         <CustomButton variant="link" btnText="See all" />
       </View>
     </ScreenLayout>
@@ -52,6 +48,7 @@ export default function Index() {
 const useStyles = makeStyles((theme: any) => ({
   container: {
     paddingTop: 12,
+    marginTop: 12,
   },
   seeAllContainer: {
     paddingTop: 8,
