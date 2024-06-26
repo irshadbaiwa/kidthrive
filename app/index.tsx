@@ -1,4 +1,4 @@
-import { View, Pressable, ScrollView } from "react-native";
+import { View, Pressable, ScrollView, Alert } from "react-native";
 import CustomText from "@/components/CustomText";
 import ScreenLayout from "@/components/ScreenLayout";
 import { Link } from "expo-router";

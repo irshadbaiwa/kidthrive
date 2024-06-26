@@ -12,10 +12,12 @@ export const CustomButton: React.FC<CustomProps> = ({
   variant = "primary",
   btnText,
   children,
+  style,
+  ...props
 }) => {
   const styles = useStyles({ variant });
   return (
-    <Pressable style={styles.btn}>
+    <Pressable style={[style, styles.btn]} {...props}>
       {btnText ? (
         <CustomText style={styles.textColor}>{btnText}</CustomText>
       ) : (
