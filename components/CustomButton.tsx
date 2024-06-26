@@ -2,7 +2,7 @@ import { Button, ButtonProps } from '@rneui/themed';
 import { makeStyles } from '@rneui/themed';
 
 interface Props {
-  variant: 'primary' | 'secondary' | 'outline' | 'link';
+  variant?: 'primary' | 'secondary' | 'outline' | 'link';
 }
 type CustomProps = Props & ButtonProps;
 
