@@ -8,7 +8,7 @@ export default function Index() {
   return (
     <ScreenLayout title="Home">
       <CustomText>Edit app/index.tsx to edit this screeen</CustomText>
-      <Link href="/add-child" asChild>
+      <Link href="/child" asChild>
         <Button>Add child</Button>
       </Link>
     </ScreenLayout>
