@@ -8,8 +8,10 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import ScreenLayout from "@/components/ScreenLayout";
+import { Link } from "expo-router";
 
-const Child = () => {
+export default function Child() {
   const navigation = useNavigation();
 
   const immunizationHistory = [
@@ -30,94 +32,89 @@ const Child = () => {
     // Add more records as needed
   ];
 
-  const handleAddImmunization = () => {
-    // Navigate to the add immunization screen
-    navigation.navigate("AddImmunization");
-  };
-
   return (
-    <ScrollView style={styles.container}>
-      {/* Header Section */}
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Child's Name</Text>
-        <Text style={styles.subHeaderText}>Male: Months Old</Text>
-        {/* Add profile picture if applicable */}
-      </View>
+    <ScreenLayout>
+      <ScrollView style={styles.container}>
+        {/* Header Section */}
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Child's Name</Text>
+          <Text style={styles.subHeaderText}>Male: Months Old</Text>
+          {/* Add profile picture if applicable */}
+        </View>
 
-      {/* Immunization History Section */}
-      <View style={styles.section}>
-        <Text style={styles.sectionHeader}>Immunization History</Text>
-        {immunizationHistory.map((record, index) => (
-          <TouchableOpacity key={index} style={styles.record}>
-            <FontAwesomeIcon
-              name="medkit"
-              size={24}
-              color="#000"
-              style={styles.icon}
-            />
-            <View>
-              <Text>{record.vaccine}</Text>
-              <Text>Date Administered: {record.dateAdministered}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-        {immunizationHistory.length === 0 && (
-          <Text>No immunization records found.</Text>
-        )}
-      </View>
+        {/* Immunization History Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionHeader}>Immunization History</Text>
+          {immunizationHistory.map((record, index) => (
+            <Link href="/vaccine-detail" asChild>
+              <TouchableOpacity key={index} style={styles.record}>
+                <FontAwesomeIcon
+                  name="medkit"
+                  size={24}
+                  color="#000"
+                  style={styles.icon}
+                />
+                <View>
+                  <Text>{record.vaccine}</Text>
+                  <Text>Date Administered: {record.dateAdministered}</Text>
+                </View>
+              </TouchableOpacity>
+            </Link>
+          ))}
+          {immunizationHistory.length === 0 && (
+            <Text>No immunization records found.</Text>
+          )}
+        </View>
 
-      {/* Upcoming Immunizations Section */}
-      <View style={styles.section}>
-        <Text style={styles.sectionHeader}>Upcoming Immunizations</Text>
-        {upcomingImmunizations.map((record, index) => (
-          <TouchableOpacity key={index} style={styles.record}>
-            <FontAwesomeIcon
-              name="calendar"
-              size={24}
-              color="#000"
-              style={styles.icon}
-            />
-            <View>
-              <Text>{record.vaccine}</Text>
-              <Text>Due Date: {record.dueDate}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-        {upcomingImmunizations.length === 0 && (
-          <Text>No upcoming immunizations.</Text>
-        )}
-      </View>
+        {/* Upcoming Immunizations Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionHeader}>Upcoming Immunizations</Text>
+          {upcomingImmunizations.map((record, index) => (
+            <TouchableOpacity key={index} style={styles.record}>
+              <FontAwesomeIcon
+                name="calendar"
+                size={24}
+                color="#000"
+                style={styles.icon}
+              />
+              <View>
+                <Text>{record.vaccine}</Text>
+                <Text>Due Date: {record.dueDate}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+          {upcomingImmunizations.length === 0 && (
+            <Text>No upcoming immunizations.</Text>
+          )}
+        </View>
 
-      {/* Nutrition Section */}
-      <View style={styles.section}>
-        <Text style={styles.sectionHeader}>Nutritions</Text>
-        {nutritionRecords.map((record, index) => (
-          <TouchableOpacity key={index} style={styles.record}>
-            <FontAwesomeIcon
-              name="apple"
-              size={24}
-              color="#000"
-              style={styles.icon}
-            />
-            <View>
-              <Text>{record.nutrition}</Text>
-              <Text>Due Date: {record.dueDate}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-        {nutritionRecords.length === 0 && <Text>No upcoming nutritions.</Text>}
-      </View>
-
-      {/* Add New Immunization Button */}
-      <TouchableOpacity
-        style={styles.addButton}
-        onPress={handleAddImmunization}
-      >
-        <Text style={styles.addButtonText}>Add New Immunization</Text>
-      </TouchableOpacity>
-    </ScrollView>
+        {/* Nutrition Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionHeader}>Nutritions</Text>
+          {nutritionRecords.map((record, index) => (
+            <Link href="/nutrition-detail" asChild>
+              <TouchableOpacity key={index} style={styles.record}>
+                <FontAwesomeIcon
+                  name="apple"
+                  size={24}
+                  color="#000"
+                  style={styles.icon}
+                />
+                <View>
+                  <Text>{record.nutrition}</Text>
+                  <Text>Due Date: {record.dueDate}</Text>
+                </View>
+              </TouchableOpacity>
+            </Link>
+          ))}
+          {nutritionRecords.length === 0 && (
+            <Text>No upcoming nutritions.</Text>
+          )}
+        </View>
+      </ScrollView>
+    </ScreenLayout>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -179,5 +176,3 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-
-export default Child;
