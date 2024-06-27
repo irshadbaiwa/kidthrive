@@ -7,39 +7,29 @@ import { CustomButton } from "@/components/CustomButton";
 import { makeStyles } from "@rneui/themed";
 import HeaderText from "@/components/HeaderText";
 import { Icon } from "@rneui/themed";
+import moment from "moment";
 
 interface Props {
-  childName: string;
-  childAge: string;
-  link: string;
+  vaccine: string;
+  date: string;
 }
 
-const ChildCard: React.FC<Props> = ({ childName, childAge, link }) => {
+const VaccineCard: React.FC<Props> = ({ vaccine, date }) => {
   const styles = useStyles();
   return (
-    <Link href={link} asChild>
-      <Pressable style={styles.container}>
-        <View style={styles.iconContainer}>
-          <Icon size={24} name="child" type="font-awesome" color="#5e6977" />
-        </View>
-        <View style={styles.headerContainer}>
-          <HeaderText variant="sm" style={styles.header}>
-            {childName}
-          </HeaderText>
-          <CustomText variant="supporting-text">{childAge}</CustomText>
-        </View>
-        <Link href={link} asChild>
-          <Pressable style={styles.chevronContainer}>
-            <Icon
-              size={26}
-              name="chevron-right"
-              type="feather"
-              color="#2089dc"
-            />
-          </Pressable>
-        </Link>
-      </Pressable>
-    </Link>
+    <Pressable style={styles.container}>
+      <View style={styles.iconContainer}>
+        <Icon size={24} name="vaccines" type="material" color="#5e6977" />
+      </View>
+      <View style={styles.headerContainer}>
+        <HeaderText variant="sm" style={styles.header} numberOfLines={2}>
+          {vaccine}
+        </HeaderText>
+        <CustomText variant="supporting-text" numberOfLines={1}>
+          {moment(date).fromNow()}
+        </CustomText>
+      </View>
+    </Pressable>
   );
 };
 
@@ -74,4 +64,4 @@ const useStyles = makeStyles((theme: any) => ({
   },
 }));
 
-export default ChildCard;
+export default VaccineCard;

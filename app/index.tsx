@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { View, Pressable, ScrollView, Alert } from "react-native";
 import CustomText from "@/components/CustomText";
 import ScreenLayout from "@/components/ScreenLayout";
@@ -9,38 +10,88 @@ import HeaderText from "@/components/HeaderText";
 import { Icon } from "@rneui/themed";
 import ChildCard from "@/components/ChildCard";
 import UpcomingVaccineCard from "@/components/UpcomingVaccineCard";
-
-const kids = [
-  { name: "Saminu Ashiru", age: "10 months old" },
-  { name: "Mudi Sammani", age: "2 months old" },
-  { name: "Mukhtar Abubakar", age: "2 year old" },
-  { name: "Asiya Maliki", age: "15 months old" },
-];
+import { useRecoilValue, useRecoilState } from "recoil";
+import { wardsState } from "@/recoil/wards-atom";
+import storageService from "@/services/storage-service";
+import { calculateAge } from "@/utils/getAge";
 
 export default function Index() {
+  const [isLoading, setIsLoading] = useState(true);
+  const wards = useRecoilValue(wardsState);
   const styles = useStyles();
+
+  useEffect(() => {
+    const loadStorageData = async () => {
+      await storageService.loadWards();
+      setIsLoading(false);
+    };
+
+    loadStorageData();
+  });
+
   return (
     <ScreenLayout title="Welcome 👋">
-      {/* Upcoming vaccinations */}
-      <UpcomingVaccineCard
-        vaccine="Polio Vaccine"
-        receiver="Saminu Ashiru"
-        timeToVaccine="In 3 days"
-        date="30th June, 2024"
-      />
+      {isLoading ? (
+        <View style={{ marginTop: 20 }}>
+          <View
+            style={{
+              height: 44,
+              width: 256,
+              maxWidth: "100%",
+              borderRadius: 12,
+              backgroundColor: "#e5e7eb",
+            }}
+          />
+          <View
+            style={{
+              marginTop: 24,
+              height: 196,
+              width: "100%",
+              borderRadius: 20,
+              backgroundColor: "#e5e7eb",
+            }}
+          />
+        </View>
+      ) : wards.length === 0 ? (
+        <View
+          style={{
+            marginTop: 56,
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Icon name="file-tray" type="ionicon" size={64} color="#ddd" />
+          <CustomText variant="supporting-text">
+            You haven't registered anyone yet
+          </CustomText>
+          <Link href="/add-child" style={{ marginVertical: 24 }} asChild>
+            <CustomButton variant="primary" btnText="Register child" />
+          </Link>
+        </View>
+      ) : (
+        <>
+          {/* Upcoming vaccinations */}
+          <UpcomingVaccineCard />
 
-      {/** Children added */}
-      <View style={styles.container}>
-        {kids.map((kid) => (
-          <ChildCard key={kid.name} childName={kid.name} childAge={kid.age} />
-        ))}
-      </View>
-      <View style={styles.seeAllContainer}>
-        <Link href="/add-child" asChild>
-          <CustomButton variant="primary" btnText="Add child" />
-        </Link>
-        <CustomButton variant="link" btnText="See all" />
-      </View>
+          {/** Children added */}
+          <View style={styles.container}>
+            {wards.map((kid) => (
+              <ChildCard
+                link={`child/${kid.id}`}
+                key={kid.name}
+                childName={kid.name}
+                childAge={calculateAge(new Date(kid.dob))}
+              />
+            ))}
+          </View>
+          <View style={styles.seeAllContainer}>
+            <Link href="/add-child" asChild>
+              <CustomButton variant="primary" btnText="Add child" />
+            </Link>
+          </View>
+        </>
+      )}
     </ScreenLayout>
   );
 }

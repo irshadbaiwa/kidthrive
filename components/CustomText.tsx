@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme, props: StyleProps) => ({
       : props.variant === "supporting-text"
       ? theme.colors.grey2
       : theme.colors.grey0,
+    fontSize: 15,
   },
 }));
 

@@ -4,6 +4,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import { ThemeProvider, lightColors } from "@rneui/themed";
+import { RecoilRoot } from "recoil";
+import RecoilNexus from "recoil-nexus";
 
 const theme = {
   colors: {
@@ -33,12 +35,15 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="add-child" />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <RecoilRoot>
+      <RecoilNexus />
+      <ThemeProvider theme={theme}>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="add-child" />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }

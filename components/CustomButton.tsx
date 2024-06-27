@@ -36,11 +36,12 @@ const useStyles = makeStyles((theme: any, props: StyleProps) => ({
     paddingHorizontal: 12,
     width: "auto",
     fontWeight: "600",
+    fontSize: 16,
     backgroundColor:
       props.variant === "primary"
         ? theme.colors.primary
         : props.variant === "secondary"
-        ? theme.colors.grey5
+        ? theme.colors.secondary
         : "transparent",
     color:
       props.variant === "primary"
@@ -49,18 +50,19 @@ const useStyles = makeStyles((theme: any, props: StyleProps) => ({
         ? theme.colors.grey0
         : theme.colors.primary,
     borderRadius: 8,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor:
       props.variant === "primary"
         ? theme.colors.primary
         : props.variant === "secondary"
-        ? theme.colors.grey4
+        ? theme.colors.grey5
         : props.variant === "outline"
         ? theme.colors.primary
         : "transparent",
   },
   textColor: {
     fontWeight: "600",
+    fontSize: 16,
     color:
       props.variant === "primary"
         ? theme.colors.white
